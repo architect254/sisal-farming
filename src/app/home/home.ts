@@ -37,7 +37,7 @@ export class Home {
       {
         name: 'description',
         content:
-          'Leading sisal fiber producer in Nairobi, Kenya. Sustainable sisal hemp cultivation, manufacturing & export. Premium UG, SSUG grades for gypsum, twine, rope. Buy sisal fiber Kenya Africa.',
+          "Source premium UG/SSUG sisal fiber from Kenya's leading sustainable producer. Custom quotes, fast export from Nairobi. Contact Uniao Group today",
       },
       {
         name: 'keywords',
