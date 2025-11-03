@@ -24,11 +24,14 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/favicon.ico",
+              "src/assets",
+              "src/robots.txt",
+              "src/manifest.webmanifest",
+              "src/ngsw-config.json"
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "server": "src/main.server.ts",
             "outputMode": "static",
             "ssr": {
@@ -49,7 +52,8 @@
                   "maximumError": "500kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
@@ -58,6 +62,12 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "routes": ["/", "/about", "/products", "/contact", "/get-a-quote", "/sustainability"]
+          }
         },
         "serve": {
           "builder": "@angular/build:dev-server",
@@ -85,9 +95,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss"]
           }
         }
       }

@@ -24,12 +24,30 @@ const angularApp = new AngularNodeAppEngine();
  * ```
  */
 
+// Serve robots.txt
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.sendFile(join(browserDistFolder, 'robots.txt'));
+});
+
+// Serve sitemap.xml
+app.get('/sitemap.xml', (req, res) => {
+  res.type('application/xml');
+  res.sendFile(join(browserDistFolder, 'sitemap.xml'));
+});
+
 /**
- * Serve static files from /browser
+ * Serve static files from /browser with cache headers.
  */
 app.use(
   express.static(browserDistFolder, {
     maxAge: '1y',
+    etag: true,
+    setHeaders: (res, path) => {
+      if (path.endsWith('.html')) {
+        res.setHeader('Cache-Control', 'no-cache');
+      }
+    },
     index: false,
     redirect: false,
   }),

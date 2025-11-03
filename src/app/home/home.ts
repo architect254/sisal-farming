@@ -1,21 +1,144 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ElementRef, HostListener, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
+import { NgOptimizedImage } from '@angular/common';
+
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, NgOptimizedImage],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home {
-  title = 'Uniao Group Limited';
+  title = 'Uniao Group Limited - Premium Sisal Fiber Producer Kenya';
   isMenuOpen = false;
   currentSlide = 0;
   autoSlideInterval: any;
+  isBrowser: boolean;
+
+  constructor(
+    private metaService: Meta,
+    private titleService: Title,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+    this.setMetaTags();
+  }
+
+  private setMetaTags() {
+    // Primary Meta Tags
+    this.titleService.setTitle(
+      'Uniao Group Limited | Premium Sisal Fiber Producer & Exporter in Kenya, East Africa'
+    );
+
+    this.metaService.addTags([
+      {
+        name: 'description',
+        content:
+          'Leading sisal fiber producer in Nairobi, Kenya. Sustainable sisal hemp cultivation, manufacturing & export. Premium UG, SSUG grades for gypsum, twine, rope. Buy sisal fiber Kenya Africa.',
+      },
+      {
+        name: 'keywords',
+        content:
+          'sisal fiber Kenya, sisal production Nairobi, sisal hemp Africa, buy sisal fiber, sisal export Kenya, UG grade sisal, SSUG sisal, sisal yarn Kenya, sisal rope manufacturer, sisal gypsum fiber, sustainable sisal farming Kenya, sisal twine Africa, natural fiber Kenya, sisal cultivation East Africa, sisal supplier Kenya, sisal processing plant Nairobi, eco-friendly sisal, sisal products Kenya, agricultural fiber Kenya, sisal farming Kenya',
+      },
+      { name: 'author', content: 'Uniao Group Limited' },
+      {
+        name: 'robots',
+        content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+      },
+      { name: 'googlebot', content: 'index, follow' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+      { charset: 'UTF-8' },
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
+      { name: 'format-detection', content: 'telephone=no' },
+
+      // Geo Tags for Kenya/Africa targeting
+      { name: 'geo.region', content: 'KE-30' },
+      { name: 'geo.placename', content: 'Nairobi' },
+      { name: 'geo.position', content: '-1.286389;36.817223' },
+      { name: 'ICBM', content: '-1.286389, 36.817223' },
+
+      // Open Graph / Facebook
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://agrouniaogroup.com' },
+      {
+        property: 'og:title',
+        content: 'Uniao Group Limited | Premium Sisal Fiber Producer Kenya',
+      },
+      {
+        property: 'og:description',
+        content:
+          'Leading sisal fiber producer in Nairobi, Kenya. Sustainable sisal cultivation, manufacturing & export. Premium UG, SSUG grades for global markets.',
+      },
+      { property: 'og:image', content: 'https://agrouniaogroup.com/assets/sisal-fiber.jpg' },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      { property: 'og:image:alt', content: 'Uniao Group sisal fiber production Kenya' },
+      { property: 'og:locale', content: 'en_KE' },
+      { property: 'og:site_name', content: 'Uniao Group Limited' },
+
+      // Twitter Card
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:url', content: 'https://agrouniaogroup.com' },
+      {
+        name: 'twitter:title',
+        content: 'Uniao Group Limited | Premium Sisal Fiber Producer Kenya',
+      },
+      {
+        name: 'twitter:description',
+        content:
+          'Leading sisal fiber producer in Nairobi, Kenya. Sustainable sisal cultivation, manufacturing & export.',
+      },
+      { name: 'twitter:image', content: 'https://agrouniaogroup.com/assets/sisal-fiber.jpg' },
+      { name: 'twitter:image:alt', content: 'Uniao Group sisal fiber production Kenya' },
+
+      // Additional SEO
+      { name: 'theme-color', content: '#002708' },
+      { name: 'msapplication-TileColor', content: '#002708' },
+      { name: 'apple-mobile-web-app-capable', content: 'yes' },
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+
+      // Business/Local SEO
+      { name: 'coverage', content: 'Worldwide' },
+      { name: 'distribution', content: 'Global' },
+      { name: 'rating', content: 'General' },
+      { name: 'target', content: 'all' },
+      { name: 'audience', content: 'all' },
+    ]);
+
+    // Canonical Link (client-side only)
+    if (this.isBrowser) {
+      const link: HTMLLinkElement = document.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      link.setAttribute('href', 'https://agrouniaogroup.com');
+      document.head.appendChild(link);
+    }
+
+    // Alternate hreflang for multilingual SEO (client-side only)
+    if (this.isBrowser) {
+      const hreflangLinks = [
+        { lang: 'en', href: 'https://agrouniaogroup.com' },
+        { lang: 'sw', href: 'https://agrouniaogroup.com/sw' },
+        { lang: 'x-default', href: 'https://agrouniaogroup.com' },
+      ];
+
+      hreflangLinks.forEach((item) => {
+        const hreflang: HTMLLinkElement = document.createElement('link');
+        hreflang.setAttribute('rel', 'alternate');
+        hreflang.setAttribute('hreflang', item.lang);
+        hreflang.setAttribute('href', item.href);
+        document.head.appendChild(hreflang);
+      });
+    }
+  }
+
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+
   communityProjects = [
     {
       icon: '🌱',
@@ -41,12 +164,14 @@ export class Home {
       description: 'Reforestation and waste reduction projects tied to our sisal operations.',
     },
   ];
+
   sustainabilityInitiatives = [
     'Eco-friendly sisal hemp cultivation with minimal water usage and natural pest control',
     'Zero-waste manufacturing processes for sisal fiber and yarn production',
     'Carbon-neutral export logistics to reduce global sisal supply chain emissions',
     'Biodiversity preservation through regenerative farming on Kenyan sisal plantations',
   ];
+
   quotationServices = [
     {
       icon: 'fas fa-file-contract',
@@ -69,6 +194,7 @@ export class Home {
       description: 'Personalized advice on sisal yarn and gypsum fiber solutions',
     },
   ];
+
   activities = [
     {
       iconClass: 'fas fa-seedling',
@@ -103,6 +229,7 @@ export class Home {
       location: 'Nairobi, Kenya',
     },
   ];
+
   @ViewChild('aboutSection') aboutSection!: ElementRef;
   @ViewChild('parallaxBack') parallaxBack!: ElementRef;
   @ViewChild('deco1') deco1!: ElementRef;
@@ -118,7 +245,10 @@ export class Home {
   @ViewChild('slide4') slide4!: ElementRef;
   @ViewChild('decoLeaf1') decoLeaf1!: ElementRef;
   @ViewChild('decoLeaf2') decoLeaf2!: ElementRef;
+
   ngAfterViewInit() {
+    if (!this.isBrowser) return;
+
     if (this.imageWrapper && window.innerWidth > 768) {
       const wrapper = this.imageWrapper.nativeElement;
       wrapper.addEventListener('mousemove', (e: MouseEvent) => {
@@ -164,28 +294,31 @@ export class Home {
     this.startAutoSlide();
     this.initParallaxDeco();
   }
+
   ngOnDestroy() {
     if (this.autoSlideInterval) {
       clearInterval(this.autoSlideInterval);
     }
   }
+
   private startAutoSlide() {
+    if (!this.isBrowser) return;
     this.autoSlideInterval = setInterval(() => {
       this.nextSlide();
-    }, 10000); // Auto-advance every 10 seconds
+    }, 10000);
   }
+
   nextSlide() {
     const slides = [this.slide1, this.slide2, this.slide3, this.slide4];
     const nextIndex = (this.currentSlide + 1) % 4;
-    // Set prev class to current
     slides[this.currentSlide].nativeElement.classList.add('prev');
     slides[this.currentSlide].nativeElement.classList.remove('active');
-    // Activate next
     slides[nextIndex].nativeElement.classList.add('active');
     slides[nextIndex].nativeElement.classList.remove('prev');
     this.currentSlide = nextIndex;
     this.updateDots();
   }
+
   goToSlide(index: number) {
     if (index === this.currentSlide) return;
     const slides = [this.slide1, this.slide2, this.slide3, this.slide4];
@@ -195,31 +328,32 @@ export class Home {
     slides[index].nativeElement.classList.remove('prev');
     this.currentSlide = index;
     this.updateDots();
-    // Restart auto-slide timer
     clearInterval(this.autoSlideInterval);
     this.startAutoSlide();
   }
+
   private updateDots() {
     const dots = document.querySelectorAll('.dot');
     dots.forEach((dot, i) => {
       dot.classList.toggle('active', i === this.currentSlide);
     });
   }
+
   scrollToAbout(event: Event) {
     event.preventDefault();
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });
   }
+
   private initParallaxDeco() {
-    if (window.innerWidth > 768) {
-      // Subtle scroll-based movement for leaves
-      this.decoLeaf1.nativeElement.style.transform = 'translateY(0)';
-      this.decoLeaf2.nativeElement.style.transform = 'translateY(0)';
-      // Tie into existing scroll listener or add new
-      // For simplicity, enhance existing @HostListener
-    }
+    if (!this.isBrowser || window.innerWidth <= 768) return;
+    this.decoLeaf1.nativeElement.style.transform = 'translateY(0)';
+    this.decoLeaf2.nativeElement.style.transform = 'translateY(0)';
   }
+
   @HostListener('window:scroll')
   onWindowScroll() {
+    if (!this.isBrowser) return;
+
     const scrolled = window.pageYOffset;
     const sectionTop = this.aboutSection.nativeElement.offsetTop;
     const sectionHeight = this.aboutSection.nativeElement.offsetHeight;
@@ -255,7 +389,6 @@ export class Home {
         }px) translateZ(20px)`;
       }
     }
-    // Add gentle leaf movement
     if (this.decoLeaf1) {
       this.decoLeaf1.nativeElement.style.transform = `translateY(${scrolled * 0.1}px) rotate(${
         scrolled * 0.01
