@@ -40,7 +40,7 @@
         "@type": "LocalBusiness",
         "@id": "https://agrouniaogroup.com/#localbusiness",
         "name": "Uniao Group Limited",
-        "image": "https://agrouniaogroup.com/assets/sisal-fiber.jpg",
+        "image": "https://agrouniaogroup.com/assets/sisal-fibre-1.jpg",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Nairobi",
@@ -130,7 +130,7 @@
       role="img"
       aria-label="Sisal plantation in Kenya showing sustainable cultivation"
       style="
-        background-image: url('assets/sisal-plant.jpg');
+        background-image: url('assets/sisal-plantation-1.jpg');
         background-color: linear-gradient(135deg, var(--green-dark) 0%, var(--green-medium) 100%);
         background-size: cover;
         background-position: center;
@@ -138,14 +138,14 @@
     ></div>
     <div class="slide-content">
       <div class="logo-container">
-        <img
+        <!-- <img
           ngSrc="assets/logo.jpg"
           alt="Uniao Group Limited Logo - Leading Sisal Fiber Producer in Nairobi, Kenya"
           width="130"
           height="130"
           priority
           fetchpriority="high"
-        />
+        /> -->
       </div>
       <h2 class="animate-fade-in">Uniao Group Limited</h2>
       <p class="header-tagline">Sustainable Sisal Fiber • Innovation • Global Export</p>
@@ -163,7 +163,7 @@
       role="img"
       aria-label="Sisal harvest in Kenya showing premium quality fiber"
       style="
-        background-image: url('assets/sisal-harvest.jpg');
+        background-image: url('assets/sisal-plantation-2.jpg');
         background-size: cover;
         background-position: center;
       "
@@ -192,7 +192,7 @@
       role="img"
       aria-label="Sisal processing facility in Nairobi showing manufacturing excellence"
       style="
-        background-image: url('assets/sisal-processing.jpg');
+        background-image: url('assets/sisal-fibre-1.jpg');
         background-size: cover;
         background-position: center;
       "
@@ -221,7 +221,7 @@
       role="img"
       aria-label="Sisal export operations showing global reach from Kenya"
       style="
-        background-image: url('assets/sisal-export.jpg');
+        background-image: url('assets/sisal-plant-2.jpg');
         background-size: cover;
         background-position: center;
       "
@@ -282,7 +282,7 @@
       role="menuitem"
       aria-label="Our sisal production processes"
     >
-      <i class="fas fa-briefcase" aria-hidden="true"></i>
+      <i class="fas fa-cogs" aria-hidden="true"></i>
       <span>Our Processes</span>
     </a>
     <a
@@ -309,7 +309,7 @@
       role="menuitem"
       aria-label="Request a quote for sisal fiber"
     >
-      <i class="fas fa-file-quote" aria-hidden="true"></i>
+      <i class="fas fa-comment-dollar" aria-hidden="true"></i>
       <span>Get a Quote</span>
     </a>
     <a href="#contact" class="nav-link" role="menuitem" aria-label="Contact us">
@@ -353,14 +353,15 @@
           </div>
         </div>
         <!-- Main Image with ngOptimizedImage -->
-        <div #imageMain class="image-layer image-main">
+        <div class="image-layer image-main">
           <img
-            ngSrc="assets/sisal-fiber.jpg"
+            #imageMain
+            [ngSrc]="'assets/sisal-plant-2.jpg'"
             alt="Uniao Group Limited sisal fiber production facilities in Nairobi, Kenya - Sustainable sisal hemp cultivation and processing in East Africa"
-            width="800"
-            height="1000"
+            [width]="800"
+            [height]="1000"
             priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
           />
         </div>
         <!-- Floating Stat Badge -->
@@ -420,7 +421,7 @@
 <!-- ECONOMIC ACTIVITIES SECTION -->
 <section id="activities" class="activities" aria-labelledby="activities-heading">
   <div class="section-badge">
-    <i class="fas fa-briefcase" aria-hidden="true"></i>
+    <i class="fas fa-cogs" aria-hidden="true"></i>
     <span>Our Processes</span>
   </div>
   <h2 id="activities-heading" class="section-title-center">
@@ -527,7 +528,7 @@
       <div class="image-collage">
         <div class="collage-main">
           <img
-            ngSrc="assets/sustainable-sisal.jpg"
+            ngSrc="assets/sisal-plantation-2.jpg"
             alt="Sustainable sisal fiber production at Uniao Group Limited - Eco-friendly cultivation and processing in Kenya, East Africa"
             width="600"
             height="800"
@@ -547,17 +548,17 @@
 <section id="quotation" class="visit-section" aria-labelledby="quotation-heading">
   <div class="visit-background" aria-hidden="true">
     <img
-      ngSrc="assets/quotation-bg.jpg"
+      [ngSrc]="'assets/sisal-fibre-1.jpg'"
       alt="Request a quote for premium sisal fiber from Uniao Group Limited, Nairobi, Kenya"
-      width="1920"
-      height="1080"
-      fill
+      [width]="1920"
+      [height]="1080"
+      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
     />
     <div class="visit-overlay"></div>
   </div>
   <article class="visit-content">
     <div class="section-badge light">
-      <i class="fas fa-file-quote" aria-hidden="true"></i>
+      <i class="fas fa-comment-dollar" aria-hidden="true"></i>
       <span>Request Quote</span>
     </div>
     <h2 id="quotation-heading" class="section-title-center light">
@@ -606,21 +607,21 @@
     <i class="fas fa-bullseye" aria-hidden="true"></i>
     <span>Our Purpose</span>
   </div>
-  <header class="vm-header">
+  <div class="vm-header">
     <h2 id="vision-mission-heading" class="section-title-center">Our Mission and Vision</h2>
     <p class="section-subtitle">
       Guided by integrity, innovation, and sustainability, Uniao Group Limited delivers exceptional
       sisal fiber solutions for a prosperous global market from Kenya and East Africa.
     </p>
-  </header>
+  </div>
   <div class="vm-cards">
     <article class="vm-card vm-card-vision" aria-labelledby="vision-title">
-      <header class="vm-card-header">
+      <div class="vm-card-header">
         <div class="vm-icon" aria-hidden="true">
           <i class="fas fa-eye"></i>
         </div>
         <h3 id="vision-title">Our Vision</h3>
-      </header>
+      </div>
       <p>
         To enhance the lives of our consumers by supplying top quality sisal fiber manufactured
         using the most innovative and efficient methods to help minimize our impact on the
@@ -629,12 +630,12 @@
       <div class="card-accent" aria-hidden="true"></div>
     </article>
     <article class="vm-card vm-card-mission" aria-labelledby="mission-title">
-      <header class="vm-card-header">
+      <div class="vm-card-header">
         <div class="vm-icon" aria-hidden="true">
           <i class="fas fa-hand-holding-heart"></i>
         </div>
         <h3 id="mission-title">Our Mission</h3>
-      </header>
+      </div>
       <p>
         We aim to provide high quality sisal fiber at affordable prices for the end consumer and the
         market at large. This will be achieved through innovation, dedication and superior customer
@@ -645,11 +646,11 @@
   </div>
   <figure class="vm-banner" aria-label="Uniao Group team commitment">
     <img
-      ngSrc="assets/sisal-team.jpg"
+      [ngSrc]="'assets/sisal-fibre-1.jpg'"
       alt="Uniao Group Limited team committed to sustainable sisal fiber production in Kenya, East Africa"
-      width="1200"
-      height="350"
-      sizes="(max-width: 768px) 100vw, 1200px"
+      [width]="1200"
+      [height]="350"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
     />
     <div class="banner-overlay" aria-hidden="true"></div>
     <figcaption class="banner-content">
